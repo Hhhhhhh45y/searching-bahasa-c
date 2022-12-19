@@ -1,26 +1,64 @@
-#include <stdio.h>
+#include<stdio.h>
+
+//pembuatan fungsi binaryIteratif
+int binaryIteratif(int data[],int n,int cari,int kiri,int kanan){
+   
+   int mid,index=0;
  
-int linearSearch(int data[],int datayangdicari){
-  
-  //looping untuk mencari datanya
-  int bykdata;
-    for(int i= 0; i<bykdata;i++){       
-      if(data[i]==datayangdicari)return i;
-    }
- 
-  return -1;  
-}
- 
-int main (){
-  int data[4]={9,11,1,8}; //data
-  int indexSearch = linearSearch(data,1); 
-//(data, angka yang dicari)
- 
-  if(indexSearch == -1){
-  printf("Data tidak ditemukan dalam array\n");
+   while(kiri<=kanan){
+    mid=(kiri+kanan)/2;
+    
+   if(cari==data[mid]){      
+//if memiliki kondisi yaitu apabila cari sama dengan data mid maka akan dijalankan return mid
+      
+return mid;  //mengembalikan nilai mid
+   }
+    
+    else if(cari>data[mid]){   
+//jika salah salah maka fungsi ini yang dijalankan
+
+     kiri = mid+1;
   }
-  else{
-  printf("Data %d ditemukan dalam array\n",data[indexSearch]);  
-  } //printf berfungsi untuk menampilkan pada output
-  return 0; //nilai kembalinya adalah 0
+      
+    else{  
+     kanan = mid -1;  
+  }
+    
+   }
+  return -1;
 }
+
+//pendeklarasian variabel
+int main(){
+  int data[100];
+  int n;
+  int cari;
+  int index;
+  int kiri,kanan;
+  
+//untuk menampilkan apa yang di apit pada tanda petik
+  printf("Masukkan banyaknya data : ");
+  scanf("%d",&n);
+  printf("Masukkan %d angka : ", n);
+  for(int i=0;i<n;i++){      //adalah perulangan
+     scanf("%d",&data[i]);	//menginput data keyboard
+  }
+ 
+ 
+  printf("Masukkan angka yang ingin dicari: ");
+  scanf("%d",&cari);
+
+ //inisialisasi variabel
+  kiri=0,kanan=n-1;
+  index=binaryIteratif(data,n,cari,kiri,kanan);
+  
+  if(index==0){
+      printf("Data tidak ditemukan.\n");
+  }
+ 
+  else{
+      printf("Angka %d ditemukan pada index ke %d\n",cari,index);
+  }
+  
+ return 0;    //mengembalikan nilai 0
+ }
